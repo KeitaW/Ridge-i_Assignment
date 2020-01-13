@@ -80,9 +80,11 @@ test_environment:
 build:
 	docker build --pull -t tfnotebook .
 
+## Login to the container
 shell:
 	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tfnotebook bash
 
+# Launch Jupyter Notebook in the container
 notebook:
 	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath notebooks):/tf/notebooks -p 8888:8888 tfnotebook 
 
