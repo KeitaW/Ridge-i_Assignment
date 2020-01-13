@@ -25,10 +25,6 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
-
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
@@ -84,6 +80,9 @@ shell:
 notebook:
 	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath notebooks):/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-py3-jupyter
  
+## Make Dataset
+data: 
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################
