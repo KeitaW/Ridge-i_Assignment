@@ -75,16 +75,21 @@ test_environment:
 #################################################################################
 # PROJECT RULES                                                                 #
 #################################################################################
+
 ## Build Docker Container
 build:
 	docker build --pull -t tfnotebook .
+
 shell:
-	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tensorflow/tensorflow:latest-gpu-py3-jupyter bash
+	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tfnotebook bash
+
 notebook:
-	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath notebooks):/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-py3-jupyter
+	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath notebooks):/tf/notebooks -p 8888:8888 tfnotebook 
+
 ## Download Dataset to data/raw 
 download:
-	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tensorflow/tensorflow:latest-gpu-py3-jupyter python src/data/download_rawdata.py
+	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tfnotebook python src/data/download_rawdata.py
+
 ## Make Dataset
 data: 
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
