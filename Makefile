@@ -81,6 +81,8 @@ test_environment:
 #################################################################################
 shell:
 	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all tensorflow/tensorflow:latest-gpu-py3-jupyter bash
+notebook:
+	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath notebooks):/tf/notebooks -p 8888:8888 tensorflow/tensorflow:latest-gpu-py3-jupyter
  
 #################################################################################
 # Self Documenting Commands                                                     #
