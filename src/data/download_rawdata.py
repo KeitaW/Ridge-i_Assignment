@@ -15,7 +15,7 @@ def main():
     (x_train, y_train), (x_test, y_test) = cifar10.load_data()
     logger.info(f"# of training data: {len(x_train)} \n # of test data: {len(x_test)}")
     project_dir = Path(__file__).resolve().parents[2]
-    np.savez("cifar10.npz", x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test)
+    np.savez(project_dir / "data/raw/cifar10.npz", x_train=x_train, y_train=y_train, x_test=x_test, y_test=y_test)
 
 
 if __name__ == '__main__':
