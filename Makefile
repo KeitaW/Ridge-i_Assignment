@@ -88,13 +88,6 @@ shell:
 notebook:
 	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf -p 8888:8888 tfnotebook 
 
-## Download Dataset to data/raw 
-download:
-	docker run -u $(shell id -u):$(shell id -g) -it --rm --gpus all -v $(shell realpath .):/tf tfnotebook python src/data/download_rawdata.py
-
-## Make Dataset
-data: 
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 #################################################################################
 # Self Documenting Commands                                                     #
 #################################################################################
