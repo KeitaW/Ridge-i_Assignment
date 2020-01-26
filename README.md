@@ -2,6 +2,7 @@ Ridge-i_Assignment
 ==============================
 
 Scripts and reports of "Ridge-i assignment : Supervised and unsupervised training"
+All the analysis is in `notebooks/1.0-kw-report.ipynb`.
 
 Project Organization
 ------------
